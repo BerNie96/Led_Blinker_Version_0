@@ -11,21 +11,20 @@ byte ledStatus[6][8] = {
 };
 
 
-boolean tasterRaste;
+boolean merkerPower;
 
 OneButton Taster(10, true);
 
 void setup()
 {
-  for ( byte i = 0; i < 8; i++)
+  // link the doubleclick function to be called on a doubleclick event.
+  Taster.attachClick(Funktion_Taster);
+
+    for ( byte i = 0; i < 8; i++)
   {
     pinMode (led[i], OUTPUT);                 //Setzten der Pins als Ausgänge
 
   }
-
-
-  // link the doubleclick function to be called on a doubleclick event.
-  Taster.attachClick(Funktion_Taster);
 
 }
 
@@ -53,5 +52,5 @@ void loop()
 
 void Funktion_Taster ()
 {
-  tasterRaste = ! tasterRaste;
+  merkerPower = ! merkerPower;
 }
