@@ -20,7 +20,7 @@ void setup()
   // link the doubleclick function to be called on a doubleclick event.
   Taster.attachClick(Funktion_Taster);
 
-    for ( byte i = 0; i < 8; i++)
+  for ( byte i = 0; i < 8; i++)
   {
     pinMode (led[i], OUTPUT);                 //Setzten der Pins als Ausgänge
 
@@ -36,17 +36,18 @@ void loop()
   // You can implement other code in here or just wait a while
   delay(10);
 
-
-  for ( byte  i = 0; i < 6; i++)  //Zeilen
+  while (merkerPower == true)
   {
-    //delay(50);
-    for ( byte  j = 0; j < 8; j++)  //Spalte
+    for ( byte  i = 0; i < 6; i++)  //Zeilen
     {
-        digitalWrite (led[j],ledStatus[i][j]);
+      //delay(50);
+      for ( byte  j = 0; j < 8; j++)  //Spalte
+      {
+        digitalWrite (led[j], ledStatus[i][j]);
         delay(50);
+      }
     }
   }
-
 
 }
 
