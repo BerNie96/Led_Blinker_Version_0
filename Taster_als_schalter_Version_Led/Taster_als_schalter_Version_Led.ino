@@ -36,9 +36,22 @@ void loop()
   // You can implement other code in here or just wait a while
   delay(10);
 
-  while (merkerPower == true)
+  if (merkerPower == true)
   {
-    for ( byte  i = 0; i < 6; i++)  //Zeilen
+    Led_Laufen();
+  }
+
+}
+
+void Funktion_Taster ()
+{
+  merkerPower = ! merkerPower;
+
+}
+
+void Led_Laufen ()
+{
+      for ( byte  i = 0; i < 6; i++)  //Zeilen
     {
       //delay(50);
       for ( byte  j = 0; j < 8; j++)  //Spalte
@@ -47,11 +60,6 @@ void loop()
         delay(50);
       }
     }
-  }
-
-}
-
-void Funktion_Taster ()
-{
-  merkerPower = ! merkerPower;
+    Taster.tick();
+    delay(10);
 }
