@@ -1,5 +1,9 @@
 #include <OneButton.h>
 
+unsigned long intervall = 500;
+unsigned long startpunkt;
+unsigned long ende;
+
 byte led[8] = {2, 3, 4, 5, 6, 7, 8, 9};    //erstellen eines Arrays für einfache Pin zuordnung
 byte ledStatus[6][8] = {
   {1, 0, 0, 0, 0, 0, 0, 1},
@@ -30,6 +34,10 @@ void setup()
 
 void loop()
 {
+
+  startpunkt = 0;   //startpunkt setzen
+  ende = millis();  //endpunkt setzen
+
   // keep watching the push button:
   Taster.tick();
 
@@ -51,15 +59,21 @@ void Funktion_Taster ()
 
 void Led_Laufen ()
 {
-      for ( byte  i = 0; i < 6; i++)  //Zeilen
+  for ( byte  i = 0; i < 6; i++)  //Zeilen
+  {
+    //delay(50);
+
+    if ((ende - startpunkt) >= intervall)
     {
-      //delay(50);
+      startpunkt = millis();    //neuen Startpunkt setzen
+
       for ( byte  j = 0; j < 8; j++)  //Spalte
       {
         digitalWrite (led[j], ledStatus[i][j]);
-        delay(50);
+        // delay(50);
       }
     }
-    Taster.tick();
-    delay(10);
+  }
+  Taster.tick();
+  delay(10);
 }
